@@ -1,4 +1,5 @@
 import { Sandpack, type SandpackPredefinedTemplate } from '@codesandbox/sandpack-react'
+import { useTheme } from '../lib/useTheme'
 
 interface PlaygroundProps {
   files: Record<string, string>
@@ -19,11 +20,13 @@ export function Playground({
   dependencies,
   template = 'react-ts',
 }: PlaygroundProps) {
+  const { resolved } = useTheme()
+
   return (
     <div className="my-4 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
       <Sandpack
         template={template}
-        theme="auto"
+        theme={resolved}
         files={files}
         customSetup={dependencies ? { dependencies } : undefined}
         options={{
