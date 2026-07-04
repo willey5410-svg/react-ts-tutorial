@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { getAdjacentChapters } from '../data/chapters'
 import { isChapterCompleted, setChapterCompleted } from '../lib/progress'
+import { AskClaudeButton } from './AskClaudeButton'
 
 interface ChapterLayoutProps {
   id: string
@@ -29,9 +30,11 @@ export function ChapterLayout({ id, number, title, children }: ChapterLayoutProp
       <p className="mb-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">
         第{number}章
       </p>
-      <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-slate-50">
+      <h1 className="mb-4 text-2xl font-bold text-slate-900 dark:text-slate-50">
         {title}
       </h1>
+
+      <AskClaudeButton chapterNumber={number} chapterTitle={title} />
 
       <div className="prose-content text-[15px] leading-relaxed text-slate-800 dark:text-slate-200">
         {children}
