@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Sandpack, type SandpackPredefinedTemplate } from '@codesandbox/sandpack-react'
+import { useTheme } from '../lib/useTheme'
 
 interface ExerciseProps {
   task: string
@@ -28,6 +29,7 @@ export function Exercise({
 }: ExerciseProps) {
   const [showSolution, setShowSolution] = useState(false)
   const [openHints, setOpenHints] = useState(0)
+  const { resolved } = useTheme()
 
   return (
     <div className="my-6 rounded-lg border-2 border-emerald-300 bg-emerald-50/50 p-4 dark:border-emerald-700 dark:bg-emerald-950/20">
@@ -40,7 +42,7 @@ export function Exercise({
 
       <Sandpack
         template={template}
-        theme="auto"
+        theme={resolved}
         files={showSolution ? { ...files, ...solutionFiles } : files}
         customSetup={dependencies ? { dependencies } : undefined}
         options={{
